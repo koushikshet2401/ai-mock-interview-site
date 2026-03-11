@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Toaster } from "sonner"
+
+import { AuthProvider } from "./context/AuthContext"
 
 import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
@@ -15,65 +17,57 @@ import "./index.css"
 
 function App() {
   return (
-<BrowserRouter>
-  <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Toaster />
+        <Routes>
 
-    <Route
-      path="/login"
-      element={
-        <AuthLayout>
-          <Login />
-        </AuthLayout>
-      }
-    />
+          {/* Default → Signup */}
+          <Route path="/" element={
+            <RootLayout>
+              <Dashboard />
+            </RootLayout>
+          } />
 
-    <Route
-      path="/register"
-      element={
-        <AuthLayout>
-          <Register />
-        </AuthLayout>
-      }
-    />
+          {/* Auth pages */}
+          <Route path="/sign-up" element={
+            <AuthLayout>
+              <Register />
+            </AuthLayout>
+          } />
 
-    <Route
-      path="/"
-      element={
-        <RootLayout>
-          <Dashboard />
-        </RootLayout>
-      }
-    />
+          <Route path="/sign-in" element={
+            <AuthLayout>
+              <Login />
+            </AuthLayout>
+          } />
 
-    <Route
-      path="/interview"
-      element={
-        <RootLayout>
-          <CreateInterview />
-        </RootLayout>
-      }
-    />
+          {/* Protected app pages */}
+          <Route path="/interview" element={
+            <RootLayout>
+              <CreateInterview />
+            </RootLayout>
+          } />
 
-    <Route
-      path="/interview/:id"
-      element={
-        <RootLayout>
-          <Interview />
-        </RootLayout>
-      }
-    />
+          <Route path="/interview/:id" element={
+            <RootLayout>
+              <Interview />
+            </RootLayout>
+          } />
 
-    <Route
-      path="/interview/:id/feedback"
-      element={
-        <RootLayout>
-          <Feedback />
-        </RootLayout>
-      }
-    />
+          <Route path="/interview/:id/feedback" element={
+            <RootLayout>
+              <Feedback />
+            </RootLayout>
+          } />
 
-  </Routes>
-</BrowserRouter>
+          {/* Legacy redirects */}
+          <Route path="/login" element={<Navigate to="/sign-in" replace />} />
+          <Route path="/register" element={<Navigate to="/sign-up" replace />} />
+
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 

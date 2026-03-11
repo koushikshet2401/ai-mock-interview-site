@@ -1,68 +1,98 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import API from "../services/api"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const Register = () => {
-
+  const { register } = useAuth()
   const navigate = useNavigate()
 
-  const [name,setName] = useState("")
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    setError("")
+    setLoading(true)
     try {
-
-      await API.post("/auth/register",{
-        name,
-        email,
-        password
-      })
-
-      navigate("/login")
-
-    } catch(err) {
-      alert("Registration failed")
+      const data = await register(name, email, password)
+      if (data.success) {
+        navigate("/sign-in")
+      } else {
+        setError(data.message || "Registration failed")
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration failed")
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="auth-page">
+      <div className="auth-card">
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-80">
+        <div className="auth-logo">
+          <img src="/logo.svg" width="36" height="30" alt="PrepWise" />
+          <span>PrepWise</span>
+        </div>
 
-        <h2 className="text-2xl font-bold">Register</h2>
+        <h1 className="auth-title">Create your account</h1>
+        <p className="auth-subtitle">Start your AI interview journey today</p>
 
-        <input
-          placeholder="Name"
-          value={name}
-          onChange={(e)=>setName(e.target.value)}
-          className="border p-2"
-        />
+        {error && <div className="auth-error">{error}</div>}
 
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
-          className="border p-2"
-        />
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="auth-field">
+            <label>Full Name</label>
+            <input
+              type="text"
+              placeholder="John Doe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              autoComplete="name"
+            />
+          </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e)=>setPassword(e.target.value)}
-          className="border p-2"
-        />
+          <div className="auth-field">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="john@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
+          </div>
 
-        <button className="bg-black text-white p-2">
-          Register
-        </button>
+          <div className="auth-field">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Min. 6 characters"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={6}
+              autoComplete="new-password"
+            />
+          </div>
 
-      </form>
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Creating account…" : "Create Account"}
+          </button>
+        </form>
 
+        <p className="auth-switch">
+          Already have an account?{" "}
+          <Link to="/sign-in">Sign in</Link>
+        </p>
+
+      </div>
     </div>
   )
 }
