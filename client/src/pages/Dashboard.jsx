@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import API from "../services/api"
 import InterviewCard from "../components/InterviewCard"
-
+import robot from "../public/robot.png"
 const Dashboard = () => {
 
   const [userInterviews, setUserInterviews] = useState([])
@@ -49,7 +49,7 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <img src="/robot.png" width="350" />
+        <img src={robot} width="350" />
 
       </section>
 

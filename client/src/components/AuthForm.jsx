@@ -8,7 +8,7 @@ import { Form } from "../components/ui/form"
 import { Button } from "../components/ui/button"
 import FormField from "./FormField"
 import API from "../services/api"
-
+import logo from "../public/logo.svg"
 const authFormSchema = (type) => {
   return z.object({
     name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
@@ -70,7 +70,7 @@ const AuthForm = ({ type }) => {
       <div className="flex flex-col gap-6 card py-14 px-10">
 
         <div className="flex flex-row gap-2 justify-center">
-          <img src="/logo.svg" height={32} width={38} />
+         <img src={logo} height={32} width={38} />
           <h2 className="text-primary-100">PrepWise</h2>
         </div>
 
