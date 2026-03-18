@@ -40,3 +40,153 @@
 .read-the-docs {
   color: #888;
 }
+/* ─── Agent / Interview View ──────────────────────── */
+.call-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.card-interviewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  position: relative;
+}
+
+.card-interviewer h3 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.card-interviewer img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-border {
+  flex: 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+}
+
+.card-content img {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+}
+
+.card-content h3 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ─── Speaking Animation ──────────────────────────── */
+.animate-speak {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  border: 2px solid #6366f1;
+  animation: pulse-border 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-border {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.02); }
+}
+
+/* ─── Transcript ──────────────────────────────────── */
+.transcript-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.transcript {
+  padding: 1.25rem 1.5rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.transcript p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ─── Call Buttons ────────────────────────────────── */
+.btn-call {
+  padding: 0.8rem 3rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.btn-call:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-disconnect {
+  padding: 0.8rem 3rem;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.btn-disconnect:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}

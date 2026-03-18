@@ -12,8 +12,8 @@ import Feedback from "./pages/Feedback"
 
 import AuthLayout from "./layouts/AuthLayout"
 import RootLayout from "./layouts/RootLayout"
-
 import "./index.css"
+import "./App.css"
 
 function App() {
   return (

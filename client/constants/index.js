@@ -1,0 +1,45 @@
+export const interviewer = {
+  name: "AI Interviewer",
+  assistantId: "181a5159-a34f-4276-8516-a2ce0ee3edb6",
+}
+
+export const interviewCovers = [
+  "/covers/cover1.png",
+  "/covers/cover2.png",
+  "/covers/cover3.png",
+  "/covers/cover4.png",
+]
+
+export const mappings = {
+  react: "react",
+  reactjs: "react",
+  nextjs: "nextjs",
+  next: "nextjs",
+  vue: "vuejs",
+  vuejs: "vuejs",
+  angular: "angularjs",
+  node: "nodejs",
+  nodejs: "nodejs",
+  express: "express",
+  expressjs: "express",
+  mongodb: "mongodb",
+  mongo: "mongodb",
+  postgresql: "postgresql",
+  postgres: "postgresql",
+  mysql: "mysql",
+  python: "python",
+  django: "django",
+  flask: "flask",
+  typescript: "typescript",
+  javascript: "javascript",
+  html: "html5",
+  css: "css3",
+  tailwind: "tailwindcss",
+  tailwindcss: "tailwindcss",
+  git: "git",
+  docker: "docker",
+  aws: "amazonwebservices",
+  firebase: "firebase",
+  graphql: "graphql",
+  redux: "redux",
+}
